@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/robertDurst/remote_blogger#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "twilio": "^3.24.0"
-  }
+  },
+  "devDependencies": {}
 }
