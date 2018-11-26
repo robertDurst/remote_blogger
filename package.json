@@ -1,0 +1,23 @@
+{
+  "name": "remote_blogger",
+  "version": "0.0.1",
+  "description": "A remote blogging service.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robertDurst/remote_blogger.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robertDurst/remote_blogger/issues"
+  },
+  "homepage": "https://github.com/robertDurst/remote_blogger#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "twilio": "^3.24.0"
+  }
+}
