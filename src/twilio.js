@@ -14,6 +14,17 @@ const send_text = (phone_number, message) => {
     .done();
 }
 
+const send_text_external = (phone_number, message) => {
+  client.messages
+    .create({
+       body: message,
+      from: process.env.TWILIO_PHONE_NUMBER_EXTERNAL,
+      to: phone_number
+    })
+    .then(message => console.log(message.sid))
+    .done();
+}
+
 const receive_message = body => {
   if (body.NumMedia > 0) {
     const image_url = body.MediaUrl0;
@@ -29,7 +40,7 @@ const handle_media = async (body, image_url, description) => {
   id = resp.id;
   send_text(body.From, `Received post with description "${description}". To update description, respond with prefix: ${id}~`);
   const nums = await pg.getAllNumbers();
-  nums.resp.forEach(x => send_text(x.number, "There is a new post to view on the A JanPlan in India Blog!"));
+  nums.resp.forEach(x => send_text_external(x.number, "There is a new post to view on the A JanPlan in India Blog!"));
 }
 
 const handle_message = async (body, msg) => {

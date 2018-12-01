@@ -54,7 +54,7 @@
       // capture phone number and then set phone number box to empty
       const number = $('#phone_number').val();
       $('#phone_number').val("");
-      $.get(`http://127.0.0.1:3000/register?phone=${number}`, function( data ) {
+      $.get(`https://remote-blogger.herokuapp.com/register?phone=${number}`, function( data ) {
         switch(data) {
           case "SUCCESS_SIGNUP":
             alert("You have successfully registered for text notifications. You will not be disappointed.");
@@ -69,7 +69,7 @@
     });
 
     function update() {
-      $.get("http://127.0.0.1:3000/posts", function( data ) {
+      $.get("https://remote-blogger.herokuapp.com/posts", function( data ) {
         // remove all old posts
         $('#posts .inside').remove();
         $('#posts').append(`<div class="inside"></div>`);
