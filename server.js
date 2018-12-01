@@ -27,7 +27,15 @@ app.post('/message', async (req, res) => {
 // get all posts
 app.get('/posts', async (req, res) => {
   const posts = await postgres.getAllPosts(); 
-  res.send(posts.resp.map( x => ({image_url: x.imageURL, description: x.description})));
+  res.send(posts.resp.reverse().map(x => {
+    const dateobj = new Date(x.created_at);
+    const date = `${dateobj.getMonth()+1}/${dateobj.getDate()}/${dateobj.getFullYear()}`
+    return {
+      image_url: x.imageURL,
+      description: x.description,
+      date,
+    }
+  }));
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
