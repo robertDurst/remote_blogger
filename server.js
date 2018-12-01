@@ -38,4 +38,11 @@ app.get('/posts', async (req, res) => {
   }));
 });
 
+// receive signup requests
+app.get('/register', async (req, res) => {
+  const number = req.query.phone;
+  const resp = await postgres.addNumber(number);
+  res.send(resp);
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

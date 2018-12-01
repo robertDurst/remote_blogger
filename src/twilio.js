@@ -28,6 +28,8 @@ const handle_media = async (body, image_url, description) => {
   const { resp } = await pg.addPost(image_url, description);
   id = resp.id;
   send_text(body.From, `Received post with description "${description}". To update description, respond with prefix: ${id}~`);
+  const nums = await pg.getAllNumbers();
+  nums.resp.forEach(x => send_text(x.number, "There is a new post to view on the A JanPlan in India Blog!"));
 }
 
 const handle_message = async (body, msg) => {

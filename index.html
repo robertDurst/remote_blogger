@@ -15,8 +15,16 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-dark bg-dark"> 
-    <h1 class="navbar-brand">Rob's India Picture Blog (click images to expand)</h1>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <h1 class="navbar-brand" href="#">A JanPlan In India (click images to expand)</h1>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" id="phone_number" type="search" placeholder="Phone Number" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" id="notification">Notify Me!</button>
+      </form>
+    </div>
   </nav>
 
   <div id="posts">
@@ -42,8 +50,26 @@
 
 </body>
   <script>
+    $('#notification').click(function() {
+      // capture phone number and then set phone number box to empty
+      const number = $('#phone_number').val();
+      $('#phone_number').val("");
+      $.get(`http://127.0.0.1:3000/register?phone=${number}`, function( data ) {
+        switch(data) {
+          case "SUCCESS_SIGNUP":
+            alert("You have successfully registered for text notifications. You will not be disappointed.");
+            break;
+          case "SUCCESS_UNSIGNUP":
+            alert("You have successfully unregistered for text notifications. You will no longer receive messages from this number.");
+            break;
+          default:
+            alert("Unfortunately there was an error. Please try again.");
+        }
+      });
+    });
+
     function update() {
-      $.get( "http://127.0.0.1:3000/posts", function( data ) {
+      $.get("http://127.0.0.1:3000/posts", function( data ) {
         // remove all old posts
         $('#posts .inside').remove();
         $('#posts').append(`<div class="inside"></div>`);
@@ -86,7 +112,7 @@
     });});}
 
     // since this is jquery, we will poll to "live" update website -- honestly pointless except for testing
-    setInterval(function(){ update(); }, 3000);
+    // setInterval(function(){ update(); }, 3000);
 
     update();
   </script>
