@@ -4,7 +4,8 @@
   "description": "A remote blogging service.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "syncdb": "node syncdb.js"
   },
   "repository": {
     "type": "git",
@@ -17,8 +18,11 @@
   },
   "homepage": "https://github.com/robertDurst/remote_blogger#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "pg": "^7.7.1",
+    "sequelize": "^4.41.2",
     "twilio": "^3.24.0"
   },
   "devDependencies": {}
